@@ -36,7 +36,7 @@ const industries = [
 export default function IndustriesPage() {
     return (
         <div className="bg-background pb-20">
-            <section className="bg-primary py-20 text-white mb-16">
+            <section className="bg-primary pt-24 pb-20 text-white mb-16">
                 <div className="container mx-auto px-4 text-center">
                     <h1 className="text-4xl md:text-5xl font-bold mb-6">Industries We Serve</h1>
                     <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto">

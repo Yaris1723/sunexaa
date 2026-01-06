@@ -225,17 +225,18 @@ export default function Home() {
 
               <motion.div className="space-y-6" variants={staggerContainer}>
                 <motion.div className="flex" variants={fadeInLeft}>
-                  <div className="mr-4 mt-1 bg-white p-2 rounded-full shadow-sm">
-                    <ShieldCheck className="h-6 w-6 text-primary" />
+                  <div className="mr-4 mt-1 bg-[#0b2545] p-2 rounded-full shadow-sm flex items-center justify-center">
+                    <ShieldCheck className="h-6 w-6 text-white" />
                   </div>
+
                   <div>
                     <h4 className="font-bold text-lg mb-1">Certified Quality</h4>
                     <p className="text-sm text-muted-foreground">Rigorous vetting of manufacturers and mill-certified materials.</p>
                   </div>
                 </motion.div>
                 <motion.div className="flex" variants={fadeInLeft}>
-                  <div className="mr-4 mt-1 bg-white p-2 rounded-full shadow-sm">
-                    <Users className="h-6 w-6 text-primary" />
+                  <div className="mr-4 mt-1 bg-[#0b2545] p-2 rounded-full shadow-sm flex items-center justify-center">
+                    <Users className="h-6 w-6 text-white" />
                   </div>
                   <div>
                     <h4 className="font-bold text-lg mb-1">Single-Window Procurement</h4>
@@ -243,8 +244,8 @@ export default function Home() {
                   </div>
                 </motion.div>
                 <motion.div className="flex" variants={fadeInLeft}>
-                  <div className="mr-4 mt-1 bg-white p-2 rounded-full shadow-sm">
-                    <Truck className="h-6 w-6 text-primary" />
+                  <div className="mr-4 mt-1 bg-[#0b2545] p-2 rounded-full shadow-sm flex items-center justify-center">
+                    <Truck className="h-6 w-6 text-white" />
                   </div>
                   <div>
                     <h4 className="font-bold text-lg mb-1">Logistics Expertise</h4>

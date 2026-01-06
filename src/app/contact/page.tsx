@@ -1,13 +1,64 @@
 "use client";
 
+import { useState } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 import { fadeInUp, fadeInLeft } from "@/lib/animations";
 
 export default function ContactPage() {
+    const [formData, setFormData] = useState({
+        name: '',
+        company: '',
+        email: '',
+        phone: '',
+        category: '',
+        message: ''
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitMessage, setSubmitMessage] = useState('');
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setSubmitMessage('');
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                setSubmitMessage('Thank you! Your inquiry has been submitted successfully. We will get back to you within 24 hours.');
+                setFormData({
+                    name: '',
+                    company: '',
+                    email: '',
+                    phone: '',
+                    category: '',
+                    message: ''
+                });
+            } else {
+                setSubmitMessage('Sorry, there was an error submitting your form. Please try again.');
+            }
+        } catch (error) {
+            setSubmitMessage('Sorry, there was an error submitting your form. Please try again.');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <div className="bg-background pb-20">
-            <section className="bg-primary py-20 text-white mb-16">
+            <section className="bg-primary pt-24 pb-20 text-white mb-16">
                 <div className="container mx-auto px-4 text-center">
                     <motion.h1
                         className="text-4xl md:text-5xl font-bold mb-6"
@@ -110,15 +161,24 @@ export default function ContactPage() {
                         transition={{ duration: 0.6, delay: 0.3 }}
                     >
                         <h2 className="text-2xl font-bold mb-6 text-foreground">Send an Inquiry</h2>
-                        <form className="space-y-4">
+                        {submitMessage && (
+                            <div className={`p-4 rounded-md mb-4 ${submitMessage.includes('error') ? 'bg-red-50 text-red-700 border border-red-200' : 'bg-green-50 text-green-700 border border-green-200'}`}>
+                                {submitMessage}
+                            </div>
+                        )}
+                        <form className="space-y-4" onSubmit={handleSubmit}>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <label className="block text-sm font-medium mb-1" htmlFor="name">Full Name</label>
                                     <input
                                         type="text"
                                         id="name"
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleInputChange}
                                         className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                                         placeholder="John Doe"
+                                        required
                                     />
                                 </div>
                                 <div>
@@ -126,6 +186,9 @@ export default function ContactPage() {
                                     <input
                                         type="text"
                                         id="company"
+                                        name="company"
+                                        value={formData.company}
+                                        onChange={handleInputChange}
                                         className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                                         placeholder="Your Company Ltd"
                                     />
@@ -138,8 +201,12 @@ export default function ContactPage() {
                                     <input
                                         type="email"
                                         id="email"
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleInputChange}
                                         className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                                         placeholder="john@company.com"
+                                        required
                                     />
                                 </div>
                                 <div>
@@ -147,6 +214,9 @@ export default function ContactPage() {
                                     <input
                                         type="tel"
                                         id="phone"
+                                        name="phone"
+                                        value={formData.phone}
+                                        onChange={handleInputChange}
                                         className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                                         placeholder="+91 98765 43210"
                                     />
@@ -157,6 +227,9 @@ export default function ContactPage() {
                                 <label className="block text-sm font-medium mb-1" htmlFor="category">Product Category</label>
                                 <select
                                     id="category"
+                                    name="category"
+                                    value={formData.category}
+                                    onChange={handleInputChange}
                                     className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                                 >
                                     <option value="">Select a category</option>
@@ -173,19 +246,24 @@ export default function ContactPage() {
                                 <label className="block text-sm font-medium mb-1" htmlFor="message">Project Details / Requirements</label>
                                 <textarea
                                     id="message"
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleInputChange}
                                     rows={4}
                                     className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                                     placeholder="Describe your project requirements and estimated quantity..."
+                                    required
                                 ></textarea>
                             </div>
 
                             <motion.button
                                 type="submit"
-                                className="w-full bg-secondary text-secondary-foreground font-bold py-3 rounded-md hover:bg-secondary/90 transition-all"
-                                whileHover={{ scale: 1.02, boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1)" }}
-                                whileTap={{ scale: 0.98 }}
+                                disabled={isSubmitting}
+                                className="w-full bg-secondary text-secondary-foreground font-bold py-3 rounded-md hover:bg-secondary/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                                whileHover={!isSubmitting ? { scale: 1.02, boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1)" } : {}}
+                                whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                             >
-                                Submit Request
+                                {isSubmitting ? 'Submitting...' : 'Submit Request'}
                             </motion.button>
                             <p className="text-xs text-muted-foreground text-center mt-2">
                                 Our team usually responds within 24 hours.

@@ -8,7 +8,7 @@ import { fadeInUp, staggerContainer, staggerItem } from "@/lib/animations";
 function ProductItem({ title, description }: { title: string, description: string }) {
     return (
         <motion.div
-            className="bg-card p-6 rounded-lg border border-border"
+            className="bg-card p-4 rounded-lg border border-border h-38 flex flex-col"
             whileHover={{
                 scale: 1.03,
                 boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
@@ -17,7 +17,7 @@ function ProductItem({ title, description }: { title: string, description: strin
             transition={{ duration: 0.2, ease: "easeOut" }}
         >
             <h3 className="font-bold text-lg mb-2 text-foreground">{title}</h3>
-            <p className="text-sm text-muted-foreground">{description}</p>
+            <p className="text-sm text-muted-foreground flex-grow">{description}</p>
         </motion.div>
     );
 }
@@ -68,7 +68,7 @@ function ProductSection({
 export default function ProductsPage() {
     return (
         <div className="bg-background pb-20">
-            <section className="bg-primary py-20 text-white mb-16">
+            <section className="bg-primary pt-24 pb-20 text-white mb-16">
                 <div className="container mx-auto px-4 text-center">
                     <motion.h1
                         className="text-4xl md:text-5xl font-bold mb-6"

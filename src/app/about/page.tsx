@@ -1,10 +1,13 @@
+"use client";
+
 import { ShieldCheck, BarChart3, Globe, Award } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function AboutPage() {
     return (
         <div className="bg-background">
             {/* Hero Section */}
-            <section className="bg-primary py-20 text-white">
+            <section className="bg-primary pt-24 pb-20 text-white">
                 <div className="container mx-auto px-4 text-center">
                     <h1 className="text-4xl md:text-5xl font-bold mb-6">About BABA SUNEXAA</h1>
                     <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto">
@@ -62,27 +65,87 @@ export default function AboutPage() {
                 <div className="container mx-auto px-4 text-center">
                     <h2 className="text-3xl font-bold mb-12">Our Commitment</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div className="bg-background p-8 rounded-lg shadow-sm border border-border">
-                            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <ShieldCheck className="h-8 w-8 text-primary" />
+                        <motion.div
+                            className="relative rounded-lg p-[3px] group"
+                            whileHover={{ y: -8, scale: 1.02 }}
+                            transition={{ duration: 0.3, ease: "easeOut" }}
+                        >
+                            {/* Border */}
+                            <div className="absolute inset-0 rounded-lg bg-[#0B2545] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                            {/* Card Content */}
+                            <div className="relative bg-background rounded-lg p-8 shadow-sm">
+                                <motion.div
+                                    className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
+                                    whileHover={{ rotate: 360, scale: 1.1 }}
+                                    transition={{ duration: 0.6, ease: "easeInOut" }}
+                                >
+                                    <ShieldCheck className="h-8 w-8 text-primary" />
+                                </motion.div>
+
+                                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
+                                    Transparency
+                                </h3>
+
+                                <p className="text-muted-foreground text-sm">
+                                    Clear documentation and honest communication throughout the procurement lifecycle.
+                                </p>
                             </div>
-                            <h3 className="text-xl font-bold mb-3">Transparency</h3>
-                            <p className="text-muted-foreground text-sm">Clear documentation and honest communication throughout the procurement lifecycle.</p>
-                        </div>
-                        <div className="bg-background p-8 rounded-lg shadow-sm border border-border">
-                            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <Award className="h-8 w-8 text-primary" />
+                        </motion.div>
+                         <motion.div
+                            className="relative rounded-lg p-[3px] group"
+                            whileHover={{ y: -8, scale: 1.02 }}
+                            transition={{ duration: 0.3, ease: "easeOut" }}
+                        >
+                            {/* Border */}
+                            <div className="absolute inset-0 rounded-lg bg-[#0B2545] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                            {/* Card Content */}
+                            <div className="relative bg-background rounded-lg p-8 shadow-sm">
+                                <motion.div
+                                    className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
+                                    whileHover={{ rotate: 360, scale: 1.1 }}
+                                    transition={{ duration: 0.6, ease: "easeInOut" }}
+                                >
+                                    <ShieldCheck className="h-8 w-8 text-primary" />
+                                </motion.div>
+
+                                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
+                                    Quality
+                                </h3>
+
+                                <p className="text-muted-foreground text-sm">
+                                    Certified products from tier-1 manufacturers ensuring long-term reliability.
+                                </p>
                             </div>
-                            <h3 className="text-xl font-bold mb-3">Quality</h3>
-                            <p className="text-muted-foreground text-sm">Certified products from tier-1 manufacturers ensuring long-term reliability.</p>
-                        </div>
-                        <div className="bg-background p-8 rounded-lg shadow-sm border border-border">
-                            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <BarChart3 className="h-8 w-8 text-primary" />
+                        </motion.div>
+                         <motion.div
+                            className="relative rounded-lg p-[3px] group"
+                            whileHover={{ y: -8, scale: 1.02 }}
+                            transition={{ duration: 0.3, ease: "easeOut" }}
+                        >
+                            {/* Border */}
+                            <div className="absolute inset-0 rounded-lg bg-[#0B2545] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                            {/* Card Content */}
+                            <div className="relative bg-background rounded-lg p-8 shadow-sm">
+                                <motion.div
+                                    className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
+                                    whileHover={{ rotate: 360, scale: 1.1 }}
+                                    transition={{ duration: 0.6, ease: "easeInOut" }}
+                                >
+                                    <ShieldCheck className="h-8 w-8 text-primary" />
+                                </motion.div>
+
+                                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
+                                    Execution
+                                </h3>
+
+                                <p className="text-muted-foreground text-sm">
+                                    Unwavering support to ensure your projects stay on schedule and within budget.
+                                </p>
                             </div>
-                            <h3 className="text-xl font-bold mb-3">Execution</h3>
-                            <p className="text-muted-foreground text-sm">Unwavering support to ensure your projects stay on schedule and within budget.</p>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </section>
