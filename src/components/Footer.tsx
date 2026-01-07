@@ -58,9 +58,12 @@ export function Footer() {
                                 <Phone className="h-5 w-5 mr-3 shrink-0 text-secondary" />
                                 <span className="text-primary-foreground/80">+91 9561415222</span>
                             </li>
-                            <li className="flex items-center">
+                            <li className="flex items-start">
                                 <Mail className="h-5 w-5 mr-3 shrink-0 text-secondary" />
-                                <span className="text-primary-foreground/80">director@babasunexaa.com</span>
+                                <div className="text-primary-foreground/80">
+                                    <span>director@babasunexaa.com</span><br />
+                                    <span>kowshikrajab@babasunexaa.com</span>
+                                </div>
                             </li>
                         </ul>
                     </div>

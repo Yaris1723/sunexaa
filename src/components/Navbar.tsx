@@ -22,14 +22,7 @@ export function Navbar() {
             <div className="px-6 h-16 flex items-center justify-between">
                 {/* Logo */}
                 <Link href="/" className="flex items-center space-x-2">
-                    <div className="flex flex-col">
-                        <span className="text-xl font-bold tracking-tight text-primary leading-none">
-                            BABA SUNEXAA
-                        </span>
-                        <span className="text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground font-medium">
-                            Trading Pvt Ltd
-                        </span>
-                    </div>
+                    <img src="/logo.png" alt="BABA SUNEXAA Trading Pvt Ltd" className="h-16 w-auto" />
                 </Link>
 
                 {/* Desktop Navigation */}
