@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { sendContactFormEmail } from '@/lib/email.service';
 
 interface ContactFormData {
   name: string;
@@ -48,8 +49,19 @@ export async function POST(request: NextRequest) {
 
     existingData.push(newEntry);
 
-    // Write back to file
+    // Write back to file (backup storage)
     fs.writeFileSync(dataFilePath, JSON.stringify(existingData, null, 2));
+
+    // Send email notification
+    try {
+      await sendContactFormEmail(newEntry);
+      console.log('Email notification sent successfully');
+    } catch (emailError) {
+      // Log email error but don't fail the request
+      // The form data is still saved to JSON
+      console.error('Failed to send email notification:', emailError);
+      // You might want to implement a retry mechanism or queue here
+    }
 
     return NextResponse.json(
       { message: 'Contact form submitted successfully' },
